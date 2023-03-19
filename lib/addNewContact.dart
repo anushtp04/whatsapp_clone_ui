@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:whatsapp_ui/details.dart';
+import 'package:whatsapp_ui/Contacts.dart';
 
 class AddNewContact extends StatelessWidget {
-  var obj2 = Details();
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,7 +16,7 @@ class AddNewContact extends StatelessWidget {
               height: 5,
             ),
             Text(
-              "22 contacts",
+              "15 contacts",
               style: TextStyle(fontSize: 14),
             )
           ],
@@ -31,31 +29,60 @@ class AddNewContact extends StatelessWidget {
                 size: 25,
               )),
           IconButton(
-            onPressed: () {},
-            icon: Icon(
-              Icons.more_vert,
-              color: Colors.white,
-              size: 25,
-            ),
-          )
+              onPressed: () {},
+              icon: Icon(Icons.more_vert, color: Colors.white, size: 25))
         ],
       ),
       body: Container(
         height: double.infinity,
         width: double.infinity,
-        child: ListView.separated(
-            itemCount: obj2.addContact.length,
-            itemBuilder: (context, index) => ListTile(
-                  title:obj2.addContactName[index],
-
-                  leading: obj2.addContact[index],
+        child: ListView.builder(
+          itemCount: 1,
+          itemBuilder: (context, index) => Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              ListTile(
+                leading: CircleAvatar(
+                  backgroundColor: Color.fromRGBO(7, 94, 84, 1),
+                  child: Icon(Icons.people, color: Colors.white),
                 ),
-            separatorBuilder: (BuildContext context, int index) {
-              return Divider(
-                thickness: 1,
-                height: 10,
-              );
-            }),
+                title: Text(
+                  "New Group",
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+                ),
+              ),
+              ListTile(
+                leading: CircleAvatar(
+                  backgroundColor: Color.fromRGBO(7, 94, 84, 1),
+                  child: Icon(
+                    Icons.person_add,
+                    color: Colors.white,
+                  ),
+                ),
+                title: Text(
+                  "New Contact",
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+                ),
+                trailing: Padding(
+                  padding: const EdgeInsets.only(right: 20),
+                  child: Icon(Icons.qr_code,
+                  color: Colors.black,
+                  size: 30),
+                ),
+              ),
+              Container(
+                padding: EdgeInsets.only(left: 15,top: 15,bottom: 10),
+                child: Text("Contacts on WhatsApp",
+                textAlign: TextAlign.left,
+                style: TextStyle(
+                  fontSize: 15,
+                  color: Colors.black
+                )),
+              ),
+              Contacts()
+            ],
+          ),
+        ),
       ),
     );
   }
